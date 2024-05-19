@@ -1,4 +1,4 @@
-# FastAPI-React-Vite-Tailwind Project
+# FastAPI-Uvicorn--React-Vite-Mantine Project
 
 This repository is structured to create a web application using FastAPI for the backend and React with Vite and TailwindCSS for the frontend. Here's how you can set up and run the project on your local machine.
 
