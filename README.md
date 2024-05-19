@@ -114,39 +114,62 @@ Start by creating a new Vite project if you don’t have one set up already. The
   cd frontend
   ```
 
-2. **Install Tailwind CSS**
+2. **Install Mantine**
    
 Install tailwindcss and its peer dependencies, then generate your tailwind.config.js and postcss.config.js files:
 
   ```bash
-  npm install -D tailwindcss postcss autoprefixer daisyui
-  npx tailwindcss init -p
+  npm install @mantine/core @mantine/hooks
   ```
 
-3. **Configure your template paths**
+3. **PostCSS setup**
+
+Install PostCSS plugins and postcss-preset-mantine:
    
-Modify your tailwind.config.js to enable JIT mode, include paths to your content, and add daisyUI as a plugin:
+  ```bash
+  npm install --save-dev postcss postcss-preset-mantine postcss-simple-vars
+  ```
+
+Create `postcss.config.js` file at the root of your application with the following content:
+
+   ```javascript
+   export default {
+     plugins: {
+       "postcss-preset-mantine": {},
+       "postcss-simple-vars": {
+         variables: {
+           "mantine-breakpoint-xs": "36em",
+           "mantine-breakpoint-sm": "48em",
+           "mantine-breakpoint-md": "62em",
+           "mantine-breakpoint-lg": "75em",
+           "mantine-breakpoint-xl": "88em",
+         },
+       },
+     },
+   };
+  ```
+
+4. **Setup**
+
+Add styles imports and MantineProvider to your application root component (usually `main.jsx`):
 
   ```javascript
-  module.exports = {
-    mode: 'jit',
-    content: ['./src/**/*.{js,jsx,ts,tsx,html}'],
-    theme: {
-      extend: {},
-    },
-    plugins: ['daisyui'],
-  }
-  ```
+  import React from 'react'
+  import ReactDOM from 'react-dom/client'
+  import App from './App.jsx'
+  import './index.css'
 
-4. **Add the Tailwind directives to your CSS**
-   
-Add the @tailwind directives for each of Tailwind’s layers to your ./src/index.css file.
+  import '@mantine/core/styles.css'
 
-  ```css
-  /* src/index.css */
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+  import { MantineProvider } from '@mantine/core'
+
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <MantineProvider>
+        <App />
+      </MantineProvider>
+    </React.StrictMode>,
+  )
   ```
 
 5. **Start the build process**
