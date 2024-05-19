@@ -108,7 +108,7 @@ Modify your tailwind.config.js to enable JIT mode, include paths to your content
     theme: {
       extend: {},
     },
-    plugins: ["daisyui"],
+    plugins: ['daisyui'],
   }
   ```
 
