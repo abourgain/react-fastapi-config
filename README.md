@@ -93,13 +93,13 @@ Start by creating a new Vite project if you don’t have one set up already. The
 Install tailwindcss and its peer dependencies, then generate your tailwind.config.js and postcss.config.js files:
 
   ```bash
-  npm install -D tailwindcss postcss autoprefixer
+  npm install -D tailwindcss postcss autoprefixer daisyui
   npx tailwindcss init -p
   ```
 
 3. **Configure your template paths**
    
-Add the paths to all of your template files in your tailwind.config.js file.
+Modify your tailwind.config.js to enable JIT mode, include paths to your content, and add daisyUI as a plugin:
 
   ```javascript
   module.exports = {
@@ -108,7 +108,7 @@ Add the paths to all of your template files in your tailwind.config.js file.
     theme: {
       extend: {},
     },
-    plugins: [],
+    plugins: ["daisyui"],
   }
   ```
 
